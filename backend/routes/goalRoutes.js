@@ -7,8 +7,6 @@ const {
   deleteGoal
 } = require('../controllers/goalController')
 
-const app = express() 
-
 router.route('/').get(getGoals).post(setGoal)
 router.route('/:id').put(updateGoal).delete(deleteGoal)
 
