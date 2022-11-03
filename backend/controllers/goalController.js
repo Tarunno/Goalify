@@ -38,7 +38,9 @@ const updateGoal = asyncHandler(async (req, res) => {
     throw new Error('Goal not found!')
   }
 
-  const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, {
+    text: req.body.text
+  }, {new: true})
 
   res.status(200).json(updatedGoal)
 })
