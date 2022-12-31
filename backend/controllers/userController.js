@@ -20,7 +20,7 @@ const userRegister = asyncHandler(async (req, res) => {
   
   if(userExists){
     res.status(400)
-    throw new Error('User already exists!')
+    throw new Error('Email should be unique!')
   }
 
   // Hash password 
@@ -58,7 +58,7 @@ const userLogin = asyncHandler(async (req, res) => {
 
   if(!user){
     res.status(400)
-    throw new Error('User doesnt exists!')
+    throw new Error('Invalid user!')
   }
   else{
     if(await bcrypt.compare(password, user.password)){
@@ -71,7 +71,7 @@ const userLogin = asyncHandler(async (req, res) => {
     }
   }
 
-  res.status(200).json({message: 'userLogin'})
+  res.status(200).json({message: 'Incorrect password!'})
 })
 
 // @desc    Get user data

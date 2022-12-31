@@ -1,0 +1,294 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+
+$brand-color: rgb(188, 17, 17);
+$container-padding: 10px 20px;
+
+@mixin button($bg:#111){
+  background-color: $bg;
+  @if $bg == #111{
+    color: #f4f4f4;
+  }
+  @else if $bg == $brand-color{
+    color: #f4f4f4;
+  }
+  @else{
+    color: #111;
+  }
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+@mixin flexer($gap:0px, $direction:row, $justify:flex-start, $align:flex-start){
+  display: flex;
+  flex-direction: $direction;
+  gap: $gap;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+header{
+  @include flexer(0px, row, space-between, center);
+  padding: $container-padding;
+  border-bottom: 1px solid lightgray;
+  .logo{
+    color: $brand-color;
+  }
+  nav:nth-child(3){
+    display: none;
+  }
+  ul{
+    list-style: none;
+    @include flexer(10px,row,space-between,center);
+    li{
+      display: inline-block;
+      a{
+        @include flexer(5px, row, center, center);
+        @include button(#f4f4f4);
+        transition: .3s;
+        &:hover{
+          @include button();
+        }
+        svg{
+          stroke-width:3px;
+        }
+      }
+    }
+    .register-btn{
+      a{
+        @include button(#111);
+        &:hover{
+          @include button($brand-color);
+        }
+        svg{
+          stroke-width:3px;
+        }
+      }
+    }
+  }
+}
+.container{
+  padding: $container-padding;
+  @include flexer(20px, column, space-between, center);
+  h1{
+    margin-bottom: 10px;
+  }
+}
+
+form{
+  width: 100%;
+  max-width: 500px;
+  @include flexer(10px, column, flex-start, flex-start);
+  padding: 20px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  .input{
+    padding: 15px;
+    width: 100%;
+    border: none;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    @include flexer(5px, row);
+    input{
+      width: 100%;
+      border: none;
+      background-color: #f4f4f4;
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+  .login-btn{
+    @include button(#111);
+    cursor: pointer;
+    &:hover{
+      @include button($brand-color);
+    }
+  }
+  animation: zoomIn .2s ease-out 0s 1;
+}
+.modal{
+  position: fixed;
+  top: 75px;
+  right: 20px;
+  width: fit-content;
+  box-shadow: 3px 3px 10px 1px rgb(196, 193, 193);
+  border-radius: 5px;
+  background: white;
+  @include flexer(0px, row, space-between, center);
+  overflow: hidden;
+  .message{
+    @include flexer(5px, row, space-between, center);
+    padding: 7px 10px 7px 20px;
+    .close{
+      font-size: 14px;
+      cursor: pointer;
+      @include flexer(0px,row,center,center);
+      border-radius: 100%;
+      padding: 10px;
+      background: #f4f4f4;
+    }
+  }
+  .error{
+    width: 5px;
+    height: 100%;
+    min-height: 50px;
+    background: red;
+  }
+  .success{
+    width: 5px;
+    height: 100%;
+    min-height: 50px;
+    background: rgb(0, 207, 38);
+  }
+  animation: slideIn .2s ease-in-out 0s 1;
+}
+@keyframes slideIn {
+  0%{
+    right: -200px;
+    transform: scale(0);
+  }
+  100%{
+    right: 20px;
+    transform: scale(1);
+  }
+}
+
+.loading{
+  padding: 10px;
+  .loading-icon{
+    font-size: 30px;
+    svg{
+      stroke-width: 3px;
+      animation: rotate .8s linear 0s infinite;
+      color: $brand-color;
+    }
+  }
+}
+@keyframes rotate {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(180deg);
+  }
+}
+
+.goals{
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  @include flexer(10px, column, space-between, center);
+  .goal{
+    width: 100%;
+    padding: 5px 10px;
+    background: #f4f4f4;
+    border: 5px;
+    @include flexer(10px, row, space-between, center);
+    .actions{
+      @include flexer(5px,row);
+      P{
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 100%;
+      }
+      p:nth-child(1){
+        background-color: rgb(199, 251, 205);
+      }
+      p:nth-child(2){
+        background-color: rgb(251, 199, 199);
+      }
+    }
+  }
+  animation: zoomIn .2s ease-out 0s 1;
+}
+@keyframes zoomIn {
+  0%{
+    transform: translateY(-110px) scale(0);
+    opacity: 0;
+  }
+  100%{
+    transform: translateY(0px) scale(1);
+    opacity: 1;
+  }
+}
+
+.add-goal{
+  width: 100%;
+  max-width: 500px;
+  form{
+    @include flexer(10px, row, space-between, center);
+    button{
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 100%;
+      border: none;
+      background-color: rgb(225, 246, 141);
+    }
+    button:nth-child(2){
+      background-color: rgb(191, 235, 249);
+    }
+  }
+}
+
+
+.hamburger-menu{
+  cursor: pointer;
+  border: 2px solid #111;
+  font-size: 24px;
+  background-color: rgb(251, 58, 58);
+  color: white;
+  padding: 5px;
+  border-radius: 100%;
+  @include flexer(0px, column, center, center);
+}
+.mobile-nav{
+  width: calc(100% - 40px);
+  position: fixed;
+  ul{
+    @include flexer(10px,column,center,center); 
+    li{
+      display: block;
+      width: 100%;
+    }
+  }
+  animation: zoomIn .2s ease-out 0s 1;
+}
+
+
+@media screen and (max-width: 600px) {
+  header{
+    position: fixed;
+    width: 100%;
+    nav:nth-child(2){
+      display: none;
+    }
+    nav:nth-child(3){
+      display: flex;
+    }
+    .mobile-nav{
+      position: fixed;
+      right: 20px;
+      top: 75px;
+      background: white;
+      padding: 10px 10px;
+      box-shadow: 3px 3px 10px 1px rgb(196, 193, 193);
+      border-radius: 7px;
+    }
+  }
+  .container{
+    padding-top: 75px;
+  }
+}
