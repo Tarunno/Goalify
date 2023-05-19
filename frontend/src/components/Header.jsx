@@ -21,18 +21,18 @@ const Header = ({loggedIn, setLoggedIn}) => {
         <h1><Link to='/'> 🎯 G O A L <span className="logo">I F Y</span></Link></h1>
         <nav>
           <ul>
-            <li><Link to='/login'><FiLogIn/> Login</Link></li>
+            {loggedIn?null:<li><Link to='/login'><FiLogIn/> Login</Link></li>}
             {loggedIn?<li><Link onClick={() => logout()} to='/login'><FiLogOut/> Logout</Link></li>:null}
-            <li className="register-btn"><Link to='/register'><FiUserCheck/> Register</Link></li>
+            {loggedIn?null:<li className="register-btn"><Link to='/register'><FiUserCheck/> Register</Link></li>}
           </ul>
         </nav>
         <nav>
           <button className="hamburger-menu" onClick={() => setHam(!ham)}><FiMoreHorizontal/></button>
           {ham?<div onClick={() => setHam(!ham)} className="mobile-nav">
             <ul>
-              <li><Link to='/login'><FiLogIn/> Login</Link></li>
+              {loggedIn?null:<li><Link to='/login'><FiLogIn/> Login</Link></li>}
               {loggedIn?<li><Link onClick={() => logout()} to='/login'><FiLogOut/> Logout</Link></li>:null}
-              <li className="register-btn"><Link to='/register'><FiUserCheck/> Register</Link></li>
+              {loggedIn?null:<li className="register-btn"><Link to='/register'><FiUserCheck/> Register</Link></li>}
             </ul> 
           </div>:null}
         </nav>

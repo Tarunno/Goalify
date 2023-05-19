@@ -2,8 +2,10 @@ import { useState, useEffect } from "react"
 import Input from "../components/Input"
 import { userLogin } from "../api/authApi"
 import Modal from "../components/Modal"
+import { useNavigate } from "react-router-dom"
 
 const Login = ({setLoggedIn}) => {
+  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: ""
@@ -30,8 +32,13 @@ const Login = ({setLoggedIn}) => {
       setOpenModal(true)
       setMessage('Welcome back ' + data.name)
       setLoggedIn(true)
+      return navigate('/')
     }
   }
+
+  useEffect(() => {
+    document.title = 'Login | GOALIFY'
+  }, [])
 
   return (
     <div className="container">
@@ -51,7 +58,6 @@ const Login = ({setLoggedIn}) => {
           value={userInfo.password}
           placeholder={"Enter password"}
           onChange={(e) => handleChange(e)}
-          required={true}
         />
         <button className="login-btn"> Login </button>
       </form>
