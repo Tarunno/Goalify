@@ -2,8 +2,10 @@ import { useState, useEffect } from "react"
 import Input from "../components/Input"
 import { userRegister } from "../api/authApi"
 import Modal from "../components/Modal"
+import { useNavigate } from "react-router-dom"
 
 const Register = ({setLoggedIn}) => {
+  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
@@ -31,6 +33,7 @@ const Register = ({setLoggedIn}) => {
       setOpenModal(true)
       setMessage('Welcome ' + data.name)
       setLoggedIn(true)
+      return navigate('/')
     }
   }
 

@@ -27,7 +27,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Deshboard />} />
           <Route path='/login' element={<Login setLoggedIn={setLoggedIn}/>} />
-          <Route path='/register' element={<Register/>} />
+          <Route path='/register' element={<Register setLoggedIn={setLoggedIn}/>} />
         </Routes>
       </Router>
     </div>
