@@ -21,7 +21,7 @@ const setGoal =  asyncHandler(async (req, res) => {
     throw new Error('Please add a text!')
   } 
   else{
-    const goal = await Goal.create({
+    let goal = await Goal.create({
       text: req.body.text,
       user: req.user.id
     })

@@ -49,7 +49,7 @@ const Register = ({setLoggedIn}) => {
           type={"text"}
           name={"name"}
           value={userInfo.name}
-          placeholder={"Enter name"}
+          placeholder={"Enter fullname"}
           onChange={(e) => handleChange(e)}
           required={true}
         />
